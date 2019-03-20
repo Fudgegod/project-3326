@@ -44,4 +44,10 @@ public class Pixel {
     public void setRed(int red) {
         this.red = red;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("Red: %d\tGreen: %d\tBlue: %d\tAlpha: %d", red, green, blue, alpha);
+    }
 }
