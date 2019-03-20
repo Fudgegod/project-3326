@@ -45,6 +45,10 @@ public class Pixel {
         this.red = red;
     }
 
+    public int getPixel() {
+        return red << 24 | green << 16 | blue << 8 | alpha;
+    }
+
 
     @Override
     public String toString() {
