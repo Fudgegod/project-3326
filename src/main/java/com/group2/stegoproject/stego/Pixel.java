@@ -1,16 +1,21 @@
 package com.group2.stegoproject.stego;
 
+import java.awt.image.BufferedImage;
+
+
 public class Pixel {
     private int alpha;
     private int blue;
     private int green;
     private int red;
+    private int type;
 
-    public Pixel(int alpha, int blue, int green, int red) {
+    public Pixel(int alpha, int blue, int green, int red, int type) {
         this.alpha = alpha;
         this.blue = blue;
         this.green = green;
         this.red = red;
+        this.type = type;
     }
 
     public int getAlpha() {
@@ -46,12 +51,36 @@ public class Pixel {
     }
 
     public int getPixel() {
-        return red << 24 | green << 16 | blue << 8 | alpha;
+        switch (type) {
+            case BufferedImage.TYPE_4BYTE_ABGR:
+                return red << 24 | green << 16 | blue << 8 | alpha;
+            case BufferedImage.TYPE_3BYTE_BGR:
+                return red << 16 | green << 8 | blue;
+            default:
+                return red << 24 | green << 16 | blue << 8 | alpha;
+        }
+
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
 
     @Override
     public String toString() {
-        return String.format("Red: %d\tGreen: %d\tBlue: %d\tAlpha: %d", red, green, blue, alpha);
+        switch (type) {
+            case BufferedImage.TYPE_4BYTE_ABGR:
+                return String.format("Red: %3d  Green: %3d  Blue: %3d  Alpha: %3d", red, green, blue, alpha);
+            case BufferedImage.TYPE_3BYTE_BGR:
+                return String.format("Red: %3d  Green: %3d  Blue: %3d", red, green, blue);
+            default:
+                return String.format("Red: %3d  Green: %3d  Blue: %3d  Alpha: %3d", red, green, blue, alpha);
+        }
+
     }
 }
