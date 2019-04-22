@@ -17,7 +17,7 @@ public class TestImageComposer {
         String outputFile = "test_files/output.png";
 
         File outputImage = new File(outputFile);
-
+        //hello
 
         BufferedImage inputBufferedImage = ImageIO.read(new File(lena));
         PixelDataExtractor extractor = new PixelDataExtractor(inputBufferedImage);
